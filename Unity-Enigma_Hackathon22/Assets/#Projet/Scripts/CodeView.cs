@@ -9,9 +9,13 @@ public class CodeView : MonoBehaviour
     public GameObject codeViewUI;
     public void PushToViewCode()
     {
-        codeViewUI.SetActive(true);
-        //codeViewUI.SetActive(false);
+        if(codeViewUI.activeInHierarchy == true){
+            codeViewUI.SetActive(false);
+        }
+        else codeViewUI.SetActive(true);
     }
+
+
 }
 
 
