@@ -1,0 +1,66 @@
+
+
+*{
+    box-sizing: border-box;
+    margin: 0; 
+    padding: 0;
+}
+
+body{
+    background-color: $bg-dark-blue;
+    font-family: $font-light;
+    color: $c-blue;
+}
+
+h1,h2,h3,h4{
+    font-family: impasse-bold;
+}
+
+p{
+    font-family: impasse-light ;
+}
+
+input{
+    background: $bg-blueLinear;
+
+    border: $c-blue 1px solid;
+
+    padding: 10px 20px;
+    margin: 20px 10px;
+
+    font-family: $font-light;
+    color: white;
+}
+
+button{
+    background: none;
+
+    border: none;
+
+    position: relative;
+
+    padding: 15px 30px;
+
+    color: $c-blue;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: 20;
+
+    overflow: hidden;
+
+    transition: 0.2s;
+
+    &:visited {
+        color: $c-blue;
+    }
+    &:hover {
+        color: #050f1a;
+
+        background-color: $bg-blue;
+
+        box-shadow: 0 0 10px $bg-blue, 0 0 40px $bg-blue, 0 0 80px $bg-blue;
+
+        transition-delay: 100ms;
+    }
+}

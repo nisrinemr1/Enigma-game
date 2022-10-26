@@ -11,5 +11,8 @@
     "nuxt": "3.0.0-rc.12",
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.0"
   }
 }
