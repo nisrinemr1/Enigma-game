@@ -4,19 +4,19 @@
 
         <div v-for="data in enigma" :key="data">
 
-            <p>Enigma {{data.index}} by {{data.user}}</p>
+            <p>Enigma by {{data.user}}</p>
 
         </div>
 
         <form @submit.prevent="submit">
 
-            <input type="text" v-model="enigma.user" placeholder="User name">
-            <input type="text" v-model="enigma.message" placeholder="Your message">
+            <input type="text" v-model="enigma.user" placeholder="enigma creator">
+            <input type="text" v-model="enigma.title" placeholder="Type your enigma sentence">
 
             <button> Send </button>
 
         </form>
-        
+
 
     </div>
 </template>
@@ -27,33 +27,35 @@
 
         data() {
             return {
-                enigma: [
-                    {user: "Niiiiiah", message: "hello"},
-                ]
+                enigma: [{
+                    user: "Niiiiiah",
+                    title: "hello"
+                }, ]
             }
         },
 
         methods: {
 
-            submit(){
-                if (!this.enigma.user && !this.enigma.message) {
-                    alert('ERROR 1!!!');
-                }
-
-                else if(!this.enigma.user || !this.enigma.message){
+            submit() {
+                //IF BOTH INPUT ARE EMPTY
+                if (!this.enigma.user && !this.enigma.title) {
+                    alert('Your message is empty');
+                } else if (!this.enigma.user || !this.enigma.title) {
                     alert("An input is missing -_-");
-                }
-                
-                else{
+                } else {
+                    // SEND INPUT VALUES TO DATA
                     this.enigma.push({
-                        user: this.enigma.user,
-                        message: this.enigma.message
-                    }
-                    )
+                        user: this.enigma.user, 
+                        title: this.enigma.title
+                    })
+                    // SEND TO STORE
+                    this.$store.dispatch('enigma/newGame',{
+                            user: this.enigma.user, 
+                            title: this.enigma.title
+                    })
                 }
+
             }
-
         }
-
     }
 </script>

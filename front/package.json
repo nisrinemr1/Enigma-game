@@ -8,12 +8,10 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.12",
-    "sass": "^1.55.0",
-    "sass-loader": "^13.1.0"
+    "nuxt": "3.0.0-rc.12"
   },
   "dependencies": {
     "firebase": "^9.12.1",
-    "nanoid": "^4.0.0"
+    "vuexfire": "^3.2.5"
   }
 }
