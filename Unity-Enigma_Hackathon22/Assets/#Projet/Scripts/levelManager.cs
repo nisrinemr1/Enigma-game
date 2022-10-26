@@ -15,6 +15,9 @@ public class levelManager : MonoBehaviour
     public GameObject cubeToInstantiate;
     private GameObject cubeInstantiated;
 
+    private Color noColor = new Color32((byte)25, (byte)26, (byte)35, (byte)255);
+    int rdmToRemember;
+
     void Start()
     {
         foreach (char l in text) // b o n j o u r 
@@ -33,7 +36,6 @@ public class levelManager : MonoBehaviour
 
     void SplitAscii()
     {
-        
         int i = 0;
         foreach (int asciiNumber in textIntoAscii)// boucle par lettre
         {
@@ -62,7 +64,17 @@ public class levelManager : MonoBehaviour
         cubeInstantiated.transform.position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
         cubeInstantiated.transform.localScale = new Vector3(rdm.Next(1, 3), numbers[1], rdm.Next(1, 3));
         if(numbers.Count > 2) {
-            
+            Color32 color = new Color32();
+            rdmToRemember = rdm.Next(15, 25);
+            color.r= (byte)(rdm.Next(0, 255));
+            color.g= (byte)(rdm.Next(0, 255));
+            color.b= (byte)(numbers[2]*rdmToRemember);
+
+            cubeInstantiated.GetComponent<Renderer>().material.color = color;
+        }
+        else
+        {
+            cubeInstantiated.GetComponent<Renderer>().material.color = noColor;
         }
 
     }
