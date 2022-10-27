@@ -23,7 +23,10 @@
         <div id="unity-build-title">Unity-Enigme_Hackathon22</div>
       </div>
     </div>
-    <script>
+
+
+
+<script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingBar = document.querySelector("#unity-loading-bar");
@@ -60,11 +63,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/Build.loader.js";
+      var loaderUrl = buildUrl + "../webgl/Build/Build.loader.js";
       var config = {
-        dataUrl: buildUrl + "/Build.data",
-        frameworkUrl: buildUrl + "/Build.framework.js",
-        codeUrl: buildUrl + "/Build.wasm",
+        dataUrl: buildUrl + "../webgl/Build/Build.data",
+        frameworkUrl: buildUrl + "../webgl/Build/Build.framework.js",
+        codeUrl: buildUrl + "../webgl/Build/Build.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "Unity-Enigme_Hackathon22",
