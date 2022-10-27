@@ -15,12 +15,16 @@ public class levelManager : MonoBehaviour
     public GameObject cubeToInstantiate;
     private GameObject cubeInstantiated;
 
+    public GameObject cubeAscii;
+    public GameObject cubePseudoCode;
+
+
     private Color noColor = new Color32((byte)25, (byte)26, (byte)35, (byte)255);
     int rdmToRemember;
 
     void Start()
     {
-        text = Test.GetTextValue();
+        //text = Test.GetTextValue();
         Debug.Log($"in Unity {text}");
         //Debug.Log($"in Unity {Test.TestFlemmard()}");
 
@@ -64,6 +68,8 @@ public class levelManager : MonoBehaviour
     }
 
     void setCube() {
+        
+        //if(cubeInstantiated == cubeAscii && cubePseudoCode){
 
         cubeInstantiated.transform.GetChild(0).position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
         cubeInstantiated.transform.GetChild(0).localScale = new Vector3(rdm.Next(1, 3), numbers[1], rdm.Next(1, 3));
@@ -80,6 +86,8 @@ public class levelManager : MonoBehaviour
         {
             cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material.color = noColor;
         }
+        //}
 
     }
+
 }
