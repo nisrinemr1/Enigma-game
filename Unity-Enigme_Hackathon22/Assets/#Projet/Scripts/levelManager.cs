@@ -25,11 +25,8 @@ public class levelManager : MonoBehaviour
     void Start()
     {
         //text = Test.GetTextValue();
-<<<<<<< HEAD
         Debug.Log($"in Unity {text}");
-=======
         //Debug.Log($"in Unity {text}");
->>>>>>> 7ecf6ffd740c45966a621256a21fb7805451ae52
         //Debug.Log($"in Unity {Test.TestFlemmard()}");
 
         foreach (char l in text) // b o n j o u r 
@@ -71,17 +68,11 @@ public class levelManager : MonoBehaviour
 
     }
 
-<<<<<<< HEAD
-    void setCube() {
-        
-        //if(cubeInstantiated == cubeAscii && cubePseudoCode){
+    
 
-        cubeInstantiated.transform.GetChild(0).position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
-=======
     void setCube()
     {
-        cubeInstantiated.transform.position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
->>>>>>> 7ecf6ffd740c45966a621256a21fb7805451ae52
+        cubeInstantiated.transform.GetChild(0).position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
         cubeInstantiated.transform.GetChild(0).localScale = new Vector3(rdm.Next(1, 3), numbers[1], rdm.Next(1, 3));
         if (numbers.Count > 2)
         {
