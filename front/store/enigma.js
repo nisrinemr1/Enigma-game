@@ -1,6 +1,7 @@
 // -------------------- IMPORT FROM INIT.JS --------------------
 // -------------------- IMPORT FROM INIT.JS --------------------
 // -------------------- IMPORT FROM INIT.JS --------------------
+import { db } from "~/firebase/init";
 import { collection, addDoc } from "firebase/firestore"; 
 
 
@@ -10,7 +11,7 @@ import { collection, addDoc } from "firebase/firestore";
 export const state = () => ({
 
     enigma: {
-        user: "error",
+        userName: "error",
         title: "error",
     }
 })
@@ -28,7 +29,6 @@ export const mutations = {
 // -------------------- ACTIONS --------------------
 // -------------------- ACTIONS --------------------
 export const actions = {
-    // GET ALL TITLES AND USER NAME
     async add({
         state
     }, {
@@ -36,18 +36,6 @@ export const actions = {
         title
     }) {
 
-        alert("coucouuuu :3");
-
-        // const enigma = doc(collection(db, "enigma"))
-
-
-        // await setDoc(enigma,{
-        //     user: user,
-        //     title: title
-        // });
-
-
-        // Add a new document with a generated id.
         const docRef = await addDoc(collection(db, "enigma"), {
             user: user,
             title: title
@@ -57,5 +45,6 @@ export const actions = {
 
         console.log("Document written with ID: ", docRef.id);
     }
+
 
 }

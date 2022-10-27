@@ -34,8 +34,8 @@
                 if(!this.userName){
                     alert("user name is empty")
                 }else{
-                    alert("Welcome " + this.userName)
-                    this.$router.push({ path: "/game", params : {userName: userName}});
+                    alert("Welcome " + this.userName);
+                    this.$router.push({ name: "game", params : {userName : this.userName}});
                 }
                 
             }

@@ -3,7 +3,10 @@
 
         <h1>Enigma game</h1>
 
+        <p>hi {{userName}}</p>
+        
         <div v-for="data in enigma">
+
 
             <p>Enigma by {{data.user}}</p>
 
@@ -11,8 +14,7 @@
 
         <form @submit.prevent="submit">
 
-            <input type="text" v-model="enigma.user" placeholder="enigma creator">
-            <input type="text" v-model="enigma.title" placeholder="Type your enigma sentence">
+            <input type="text" v-model="enigma.creator" placeholder="Type your enigma sentence">
 
             <button> Send </button>
 
@@ -28,9 +30,10 @@
         data() {
             return {
                 enigma: [{
-                    user: "Niiiiiah",
+                    creator: this.$route.params.userName,
                     title: "hello"
-                }, ]
+                }],
+                userName : this.$route.params.userName
             }
         },
 
@@ -38,24 +41,29 @@
 
             submit() {
                 //IF BOTH INPUT ARE EMPTY
-                if (!this.enigma.user && !this.enigma.title) {
+                if (!this.enigma.user && !this.enigma.creator) {
                     alert('Your message is empty');
                 } else if (!this.enigma.user || !this.enigma.title) {
                     alert("An input is missing -_-");
                 } else {
                     // SEND INPUT VALUES TO DATA
                     this.enigma.push({
-                        user: this.enigma.user,
+                        creator: this.enigma.creator,
                         title: this.enigma.title
                     })
+
+                    console.log(this.$route.params)
                     //SEND TO STORE
                     this.$store.dispatch('enigma/add',{
-                            user: this.enigma.user, 
+                            user: this.enigma.creator, 
                             title: this.enigma.title
                     })
+
                 }
 
             }
-        }
+        },
+
+        
     }
 </script>
