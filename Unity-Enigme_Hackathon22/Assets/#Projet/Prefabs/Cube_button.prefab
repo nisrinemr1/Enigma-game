@@ -183,7 +183,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &22179581764594116
 Transform:
   m_ObjectHideFlags: 0
@@ -192,14 +192,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6641063338222582860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 366.5, y: -393, z: 554.5}
-  m_LocalScale: {x: 500, y: 500, z: 500}
+  m_LocalPosition: {x: 0, y: 0, z: 110.899994}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5671417156529126640}
   - {fileID: 1872799258632506851}
-  m_Father: {fileID: 8362585581410014501}
-  m_RootOrder: 0
+  m_Father: {fileID: 8362585581984342626}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8362585581410014500
 GameObject:
@@ -232,8 +232,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
-  m_Children:
-  - {fileID: 22179581764594116}
+  m_Children: []
   m_Father: {fileID: 8362585581984342626}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -349,6 +348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   codeViewUI: {fileID: 6641063338222582860}
+  cube: {fileID: 8362585583167191197}
 --- !u!1 &8362585581984342622
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,6 +381,7 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8362585581410014501}
+  - {fileID: 22179581764594116}
   m_Father: {fileID: 6596303291529135559}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -562,9 +563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 50
   transformCube: {fileID: 5322486018286530530}
-  colorCube:
-    serializedVersion: 2
-    rgba: 0
+  cubeCollider: {fileID: 8362585583167191202}
 --- !u!1 &9127760930521078435
 GameObject:
   m_ObjectHideFlags: 0
