@@ -1,13 +1,17 @@
-mergeInto(LibraryManager.library, {
 
+mergeInto(LibraryManager.library, {
+    
     GetTextValue: function () {
-        // return "bonjour";
-        const text="bonjour ok";
-        console.log(text);
-        return text;
+        
+        let message = window.GetMessage();
+        var bufferSize = lengthBytesUTF8(message) + 1;
+        var buffer = _malloc(bufferSize);
+
+        stringToUTF8(message, buffer, bufferSize);
+        console.log(message);
+        
+        return buffer;
     },
     
-    TestFlemmard: function() {
-        console.log("test de flemmard");
-    }
+    
 });
