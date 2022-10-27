@@ -20,6 +20,7 @@ public class levelManager : MonoBehaviour
 
     void Start()
     {
+        text = Test.GetTextValue();
         foreach (char l in text) // b o n j o u r 
         {
             textIntoAscii.Add(((int)l)); // converted to ASCII // 98 111 110 106 111 117 114 
