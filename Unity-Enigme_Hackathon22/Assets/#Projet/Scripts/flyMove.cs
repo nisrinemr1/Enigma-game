@@ -1,31 +1,51 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class flyMove : MonoBehaviour
 {
-    float moveSpeed = 10;
+
+    private InputAction moveAction;
+    private PlayerInputAction actions; 
+    public float moveSpeed = 10f;
+    private float verticalSpeed;
+    private CharacterController controller; 
+
+    public Camera cameraPlayer; 
+    
     //Define the speed at which the object moves.
 
 
     void Start()
     {
+        actions = new PlayerInputAction(); 
+        moveAction = actions.Player.Move; 
+        moveAction.Enable();
+        controller = GetComponent<CharacterController>();
         
     }
 
     void Update()
     {
 
-        // if ((Input.GetKey(KeyCode.UpArrow)) || (Input.GetKey(KeyCode.z)))
-        // {
-        //     //transform
-        // }
+        Vector2 moveDirection = moveAction.ReadValue<Vector2>();
+        
 
-        // if (Input.GetKey(KeyCode.DownArrow))
-        // {
-        //     print("down arrow key is held down");
-        // }
+        
+        Vector2 movement = moveDirection * moveSpeed * Time.fixedDeltaTime;
 
+        
+        controller.Move(movement.y *cameraPlayer.transform.forward + movement.x * transform.right ); 
+        //movement.x c'est pour les flèches gauches et droite
+        //movement.y c'est pour les flèches haut et bas
+        //cameraPlayer.transform.forward, ça suit le devant de la caméra (ça renvoit un vector3) donc si on multplie par le résultat des flèches du haut, on avance vers là où regarde la caméra
+        //transform.right on aurait pu aussi choisir left, mais c'est pour que ça renvoit les directions latérales du player (ça rSenvoit aussi un vector3) et on le multplie par les inputs des flèches latérales
+        //on additionne les deux pour un déplacement complet. 
+
+        
+        
 
 
         
