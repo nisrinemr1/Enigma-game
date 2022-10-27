@@ -1,8 +1,7 @@
 // -------------------- IMPORT FROM INIT.JS --------------------
 // -------------------- IMPORT FROM INIT.JS --------------------
 // -------------------- IMPORT FROM INIT.JS --------------------
-import { vuexfireMutations, firestoreAction } from 'vuexfire' 
-
+import { collection, addDoc } from "firebase/firestore"; 
 
 
 // -------------------- DATA --------------------
@@ -20,7 +19,7 @@ export const state = () => ({
 // -------------------- MUTATION --------------------
 // -------------------- MUTATION --------------------
 // -------------------- MUTATION --------------------
-export const mutations = {...vuexfireMutations,
+export const mutations = {
 
 }
 
@@ -30,7 +29,7 @@ export const mutations = {...vuexfireMutations,
 // -------------------- ACTIONS --------------------
 export const actions = {
     // GET ALL TITLES AND USER NAME
-    bindCountDocument: firestoreAction(async function({
+    async add({
         state
     }, {
         user,
@@ -57,6 +56,6 @@ export const actions = {
         });
 
         console.log("Document written with ID: ", docRef.id);
-    })
+    }
 
 }
