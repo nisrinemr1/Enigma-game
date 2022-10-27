@@ -22,7 +22,7 @@ public class levelManager : MonoBehaviour
     {
         text = Test.GetTextValue();
         Debug.Log($"in Unity {text}");
-        Debug.Log($"in Unity {Test.TestFlemmard()}");
+        //Debug.Log($"in Unity {Test.TestFlemmard()}");
 
         foreach (char l in text) // b o n j o u r 
         {
