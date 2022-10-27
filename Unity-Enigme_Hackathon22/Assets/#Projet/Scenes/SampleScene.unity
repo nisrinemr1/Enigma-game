@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8e43cd52bb028448d9ffbb1f4ea7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: bonjour
+  text: dimanche
   textIntoAscii: 
   lettre: 
   cubeToInstantiate: {fileID: 2618704314149790886, guid: e9a44cbb49fceb4498ccfeac08f77899,

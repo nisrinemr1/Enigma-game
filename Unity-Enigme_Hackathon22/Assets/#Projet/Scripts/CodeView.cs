@@ -6,9 +6,16 @@ using UnityEngine.UI;
 public class CodeView : MonoBehaviour
 {
     public GameObject codeViewUI;
+    private GameObject mainCamera;
 
     void Start() {
-
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+    }
+    void Update(){
+        
+        transform.LookAt(mainCamera.transform.position);
+        Debug.DrawRay(transform.position, transform.forward,Color.red);
+        transform.parent.forward = mainCamera.transform.position;
     }
 
 
