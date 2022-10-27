@@ -34,8 +34,12 @@
                 if(!this.userName){
                     alert("user name is empty")
                 }else{
+
+                    localStorage.setItem('storedData', this.userName);
+                
                     alert("Welcome " + this.userName);
-                    this.$router.push({ name: "game", params : {userName : this.userName}});
+                    this.$router.push({ name: "game"});
+                    
                 }
                 
             }

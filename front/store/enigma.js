@@ -42,7 +42,6 @@ export const actions = {
         }).catch((error) =>{
             console.log(error.code)
         });
-
         console.log("Document written with ID: ", docRef.id);
     }
 
