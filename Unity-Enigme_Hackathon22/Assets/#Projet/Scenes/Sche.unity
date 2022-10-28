@@ -446,14 +446,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8e43cd52bb028448d9ffbb1f4ea7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: 
+  transformCube: {fileID: 0}
+  text: Pinrlinpinpin
   textIntoAscii: 
   lettre: 
+  numbers: []
   cubeToInstantiate: {fileID: 2618704314149790886, guid: e9a44cbb49fceb4498ccfeac08f77899,
     type: 3}
   monolytheToInstantiate: {fileID: 2732444482176834890, guid: a566a8552146f2a49b24433378e766d9,
     type: 3}
   monolytheInstantiated: {fileID: 0}
+  rdmToRemember: 0
   color:
     serializedVersion: 2
     rgba: 0

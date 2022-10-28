@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 
 public class levelManager : MonoBehaviour
 {
-
+    
+    public TextMeshProUGUI transformCube;
     System.Random rdm = new System.Random();
     public string text; //bonjour
     public List<int> textIntoAscii = new List<int>(); // liste des valeurs ascii de chaque lettres de text
     public string lettre; // nombre ascci de la lettre en cours trandsformé en string
-    List<float> numbers = new List<float>(); // liste tempo pour y stocker les chiffres splités du nombre ascii de la lettre actuelle
+    public List<float> numbers = new List<float>(); // liste tempo pour y stocker les chiffres splités du nombre ascii de la lettre actuelle
 
     public GameObject cubeToInstantiate;
     private GameObject cubeInstantiated;
@@ -23,7 +25,7 @@ public class levelManager : MonoBehaviour
 
 
     private Color noColor = new Color32((byte)25, (byte)26, (byte)35, (byte)255);
-    int rdmToRemember;
+    public int rdmToRemember;
 
     public Color32 color;
 
@@ -74,7 +76,7 @@ public class levelManager : MonoBehaviour
 
             do{
                 setCube();
-                // Debug.Log("prout");
+                Debug.Log(numbers.Count);
             }while (BadCubePosition(cubeInstantiated.transform.GetChild(0).gameObject));
             // Debug.Log("sorti de la boucle while setcube");
             numbers.Clear();
@@ -99,6 +101,8 @@ public class levelManager : MonoBehaviour
     {
         cubeInstantiated.transform.position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
         cubeInstantiated.transform.GetChild(0).localScale = new Vector3(rdm.Next(1, 3), numbers[1], rdm.Next(1, 3));
+        //TextMeshProUGUI text = cubeInstantiated.transform.GetChild(0).GetComponent<CubeBehaviour>().transformCube;
+        transformCube = cubeInstantiated.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
         if (numbers.Count > 2)
         {
             color = new Color32();
@@ -110,16 +114,30 @@ public class levelManager : MonoBehaviour
 
 
             cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material.color = color;
+            mat = new Material(cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material);
+            cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material = mat;
+            mat.SetColor("_EmissionColor", (Color)color * 4);
+
+            
+
+            transformCube.text = $"transform.position = Vector3{cubeInstantiated.transform.position}  \n\ntransform.localScale = Vector3{cubeInstantiated.transform.GetChild(0).transform.localScale} \n\ngameObject.GetComponent<Renderer>().material.\ncolor = ({color.r}  , {color.g}  , {color.b / rdmToRemember} * {rdmToRemember} )";
+        
         }
         else
         {
+            Debug.Log($"{cubeInstantiated.transform.GetChild(0).name } sensé etre noir");
             cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material.color = noColor;
-        }
-        //}
+            mat = new Material(cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material);
+            cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material = mat;
+            mat.SetColor("_EmissionColor", Color.black );
 
-        mat = new Material(cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material);
-        cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material = mat;
-        mat.SetColor("_EmissionColor", (Color)color * 4);
+            transformCube.text = $"transform.position = Vector3{cubeInstantiated.transform.position}  \n\ntransform.localScale = Vector3{cubeInstantiated.transform.GetChild(0).transform.localScale}";
+        }
+        
+
+
+        
+
         
 
     }

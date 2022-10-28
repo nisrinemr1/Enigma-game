@@ -8,7 +8,6 @@ public class CubeBehaviour : MonoBehaviour
 {
     public bool isCollided;
     [HideInInspector] public float rotationSpeed = 50f;
-    public TextMeshProUGUI transformCube;
     public BoxCollider cubeCollider;
 
     //Color32 va me donner en 32 bit le format rgb d'un objet
@@ -16,8 +15,7 @@ public class CubeBehaviour : MonoBehaviour
     void Start()
     {
         isCollided = false;
-        colorCube = gameObject.GetComponent<MeshRenderer>().material.color;
-        transformCube.text = $"transform.position = Vector3{transform.position}  \n\nbtransform.localScale = Vector3{transform.localScale} \n\ngameObject.GetComponent<Renderer>().material.\ncolor = ({colorCube.r+ " , "+colorCube.g+ " , "+colorCube.b})";
+        
     }
     void Update()
     {
