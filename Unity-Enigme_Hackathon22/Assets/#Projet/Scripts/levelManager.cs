@@ -89,21 +89,7 @@ public class levelManager : MonoBehaviour
         
         return badPosition;
     }
-    // private bool InMonolythe()
-    // {
-    //     bool badPosition = false;
-    //     for(int i =1; i< listCubes.Count;i++)
-    //     {
-    //         CubeBehaviour cubebehaviour = listCubes[i].GetComponent<CubeBehaviour>();
-    //         if(cubebehaviour.isCollided)
-    //         {
-    //             badPosition = true;
-    //         }
-    //     }
-    //     return badPosition;
-    // }
 
-    
 
     void setCube()
     {
