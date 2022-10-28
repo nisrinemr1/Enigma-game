@@ -6,7 +6,7 @@ using TMPro;
 
 public class CubeBehaviour : MonoBehaviour
 {
-
+    public bool isCollided;
     [HideInInspector] public float rotationSpeed = 50f;
     public TextMeshProUGUI transformCube;
     public BoxCollider cubeCollider;
@@ -15,12 +15,22 @@ public class CubeBehaviour : MonoBehaviour
     private Color32 colorCube;
     void Start()
     {
+        isCollided = false;
         colorCube = gameObject.GetComponent<MeshRenderer>().material.color;
         transformCube.text = $"transform.position = Vector3{transform.position}  \ntransform.localScale = Vector3{transform.localScale} \ngameObject.GetComponent<Renderer>().material.color = ({colorCube.r+ " , "+colorCube.g+ " , "+colorCube.b})";
     }
     void Update()
     {
         transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+    }
+    void OnTriggerStay(Collider other)
+    {
+        isCollided = true;
+    }
+    void OnTriggerExit(Collider other)
+    {
+        isCollided = false;
+        
     }
 
 }
