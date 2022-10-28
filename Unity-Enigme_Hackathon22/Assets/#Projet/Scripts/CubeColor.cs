@@ -10,9 +10,11 @@ public class CubeColor : MonoBehaviour
     public levelManager colorCollect; 
     void Start()
     {
-        mat = new Material(GetComponent<Renderer>().material);
-        GetComponent<Renderer>().material = mat;
-        // mat.SetColor("_EmissionColor", colorCollect.);
+        // colorCollect = FindObjectOfType<levelManager>();
+        // mat = new Material(GetComponent<Renderer>().material);
+        // GetComponent<Renderer>().material = mat;
+        // mat.SetColor("_EmissionColor", (Color)colorCollect.color * 2);
+        // Debug.Log(colorCollect);
 
 
     }

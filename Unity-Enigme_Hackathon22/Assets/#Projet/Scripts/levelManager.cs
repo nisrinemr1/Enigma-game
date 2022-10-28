@@ -25,11 +25,15 @@ public class levelManager : MonoBehaviour
     private Color noColor = new Color32((byte)25, (byte)26, (byte)35, (byte)255);
     int rdmToRemember;
 
+    public Color32 color;
+
+    private Material mat;
+
     void Start()
     {
         
         //text = Test.GetTextValue();
-        Debug.Log($"in Unity {text}");
+        // Debug.Log($"in Unity {text}");
         //Debug.Log($"in Unity {text}");
         //Debug.Log($"in Unity {Test.TestFlemmard()}");
 
@@ -61,7 +65,7 @@ public class levelManager : MonoBehaviour
                 int n = l - '0'; // This works because each character is internally represented by a number. The characters '0' to '9' are represented by consecutive numbers, so finding the difference between the characters '0' and '2' results in the number 2.
                 float nb = (float)(n == 0 ? 0.001f : n);
                 numbers.Add(nb);
-                Debug.Log(numbers[numbers.Count - 1]);
+                // Debug.Log(numbers[numbers.Count - 1]);
             }
 
             cubeInstantiated = Instantiate(cubeToInstantiate, Vector3.zero, Quaternion.identity);
@@ -70,9 +74,9 @@ public class levelManager : MonoBehaviour
 
             do{
                 setCube();
-                Debug.Log("prout");
+                // Debug.Log("prout");
             }while (BadCubePosition(cubeInstantiated.transform.GetChild(0).gameObject));
-            Debug.Log("sorti de la boucle while setcube");
+            // Debug.Log("sorti de la boucle while setcube");
             numbers.Clear();
             i++;
 
@@ -81,7 +85,7 @@ public class levelManager : MonoBehaviour
     private bool BadCubePosition(GameObject cube)
     {
         bool badPosition = false;
-        Debug.Log(cube.GetComponent<CubeBehaviour>());
+        // Debug.Log(cube.GetComponent<CubeBehaviour>());
         if(cube.GetComponent<CubeBehaviour>().isCollided)
         {
             badPosition = true;
@@ -97,11 +101,13 @@ public class levelManager : MonoBehaviour
         cubeInstantiated.transform.GetChild(0).localScale = new Vector3(rdm.Next(1, 3), numbers[1], rdm.Next(1, 3));
         if (numbers.Count > 2)
         {
-            Color32 color = new Color32();
+            color = new Color32();
             rdmToRemember = rdm.Next(15, 25);
             color.r = (byte)(rdm.Next(0, 255));
             color.g = (byte)(rdm.Next(0, 255));
             color.b = (byte)(numbers[2] * rdmToRemember);
+
+
 
             cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material.color = color;
         }
@@ -110,6 +116,11 @@ public class levelManager : MonoBehaviour
             cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material.color = noColor;
         }
         //}
+
+        mat = new Material(cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material);
+        cubeInstantiated.transform.GetChild(0).GetComponent<Renderer>().material = mat;
+        mat.SetColor("_EmissionColor", (Color)color * 4);
+        
 
     }
 

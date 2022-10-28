@@ -17,7 +17,7 @@ public class CubeBehaviour : MonoBehaviour
     {
         isCollided = false;
         colorCube = gameObject.GetComponent<MeshRenderer>().material.color;
-        transformCube.text = $"transform.position = Vector3{transform.position}  \ntransform.localScale = Vector3{transform.localScale} \ngameObject.GetComponent<Renderer>().material.color = ({colorCube.r+ " , "+colorCube.g+ " , "+colorCube.b})";
+        transformCube.text = $"transform.position = Vector3{transform.position}  \n\nbtransform.localScale = Vector3{transform.localScale} \n\ngameObject.GetComponent<Renderer>().material.\ncolor = ({colorCube.r+ " , "+colorCube.g+ " , "+colorCube.b})";
     }
     void Update()
     {

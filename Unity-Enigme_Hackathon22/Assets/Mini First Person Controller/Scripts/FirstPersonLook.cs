@@ -40,7 +40,7 @@ public class FirstPersonLook : MonoBehaviour
 
         Vector2 cameraDirection = moveAction.ReadValue<Vector2>();
 
-        Debug.Log(cameraDirection);
+
 
 
         // Get smooth velocity.
