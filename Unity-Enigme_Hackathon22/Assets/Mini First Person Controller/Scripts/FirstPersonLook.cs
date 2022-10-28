@@ -27,6 +27,7 @@ public class FirstPersonLook : MonoBehaviour
     {
         // Lock the mouse cursor to the game screen.
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
 
         actions = new PlayerInputAction(); 
         moveAction = actions.Player.Look; 
@@ -38,6 +39,8 @@ public class FirstPersonLook : MonoBehaviour
     {
 
         Vector2 cameraDirection = moveAction.ReadValue<Vector2>();
+
+        Debug.Log(cameraDirection);
 
 
         // Get smooth velocity.

@@ -91,7 +91,7 @@ public class levelManager : MonoBehaviour
     }
 
 
-    void setCube()
+     public void setCube()
     {
         cubeInstantiated.transform.position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
         cubeInstantiated.transform.GetChild(0).localScale = new Vector3(rdm.Next(1, 3), numbers[1], rdm.Next(1, 3));
