@@ -14,9 +14,12 @@ public class levelManager : MonoBehaviour
 
     public GameObject cubeToInstantiate;
     private GameObject cubeInstantiated;
+    public GameObject monolytheToInstantiate;
+    public GameObject monolytheInstantiated;
+    private List<GameObject> listCubes = new List<GameObject>();
 
-    public GameObject cubeAscii;
-    public GameObject cubePseudoCode;
+    //public GameObject cubeAscii; // 
+    //public GameObject cubePseudoCode; //
 
 
     private Color noColor = new Color32((byte)25, (byte)26, (byte)35, (byte)255);
@@ -24,6 +27,7 @@ public class levelManager : MonoBehaviour
 
     void Start()
     {
+        
         //text = Test.GetTextValue();
         Debug.Log($"in Unity {text}");
         //Debug.Log($"in Unity {text}");
@@ -46,6 +50,8 @@ public class levelManager : MonoBehaviour
     void SplitAscii()
     {
         int i = 0;
+        monolytheInstantiated = Instantiate(monolytheToInstantiate, new Vector3(1.251f, 2.61f,0f), Quaternion.identity);
+        listCubes.Add(monolytheInstantiated);
         foreach (int asciiNumber in textIntoAscii)// boucle par lettre
         {
             lettre = textIntoAscii[i].ToString();
@@ -59,20 +65,35 @@ public class levelManager : MonoBehaviour
             }
 
             cubeInstantiated = Instantiate(cubeToInstantiate, Vector3.zero, Quaternion.identity);
-            setCube();
+            // ajout du cube dans liste ( cubes + monolithe)
+            listCubes.Add(cubeInstantiated.transform.GetChild(0).gameObject);
+
+            do{
+                setCube();
+                Debug.Log("prout");
+            }while (BadCubePosition(cubeInstantiated.transform.GetChild(0).gameObject));
+            Debug.Log("sorti de la boucle while setcube");
             numbers.Clear();
             i++;
 
         }
-
-
+    }
+    private bool BadCubePosition(GameObject cube)
+    {
+        bool badPosition = false;
+        Debug.Log(cube.GetComponent<CubeBehaviour>());
+        if(cube.GetComponent<CubeBehaviour>().isCollided)
+        {
+            badPosition = true;
+        }
+        
+        return badPosition;
     }
 
-    
 
      public void setCube()
     {
-        cubeInstantiated.transform.GetChild(0).position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
+        cubeInstantiated.transform.position = new Vector3(numbers[0], rdm.Next(0, 20), rdm.Next(-20, 20));
         cubeInstantiated.transform.GetChild(0).localScale = new Vector3(rdm.Next(1, 3), numbers[1], rdm.Next(1, 3));
         if (numbers.Count > 2)
         {

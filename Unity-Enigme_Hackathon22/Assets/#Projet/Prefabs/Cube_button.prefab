@@ -544,10 +544,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8362585583167191196}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 2.5, y: 2.5, z: 2.5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8362585583167191197
 MonoBehaviour:
@@ -561,6 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41adda9f1aab70243b514496590a6946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCollided: 0
   rotationSpeed: 50
   transformCube: {fileID: 5322486018286530530}
   cubeCollider: {fileID: 8362585583167191202}
