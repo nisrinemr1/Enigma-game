@@ -1,37 +1,22 @@
-<template scr="../assets/webgl/canva.html">
-
-  <div class="gameCanvas">
-
-    <!-- <iFrame src="../assets/webgl/canva.html">
-        </iFrame> -->
-    <canvas id="unity-canvas" width=960 height=600>{{runWebGL}}</canvas>
-
-  </div>
+<template> 
+   <!-- <Unity  width="1000" height="600" unityLoader="http://localhost:8888/group_project/i3_hackathon/webgl/Build/Build.loader.js"></Unity>  -->
+<iframe src="http://192.168.3.47/" width="1000" height="600"></iframe>
 
 </template>
 
 <script>
-  export default {
+  import Unity from 'vue-unity-webgl'
+ export default {
+  components:{Unity}
 
-
-    // mounted() {
-    //   this.runWebGL()
-    // }
-    // methods: {
-      
-
-    // }
-
+ }
 </script>
 
 <style lang="scss">
-  .gameCanvas {
-    width: 100%;
 
-    iFrame {
+   iframe{
+      border: none;
       width: 100%;
-      background-color: pink;
-    }
-  }
+   }
 
 </style>

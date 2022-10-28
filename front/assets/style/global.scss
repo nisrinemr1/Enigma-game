@@ -43,14 +43,21 @@ $bg-blue : rgb(4, 235, 235);
 
 
 *{
-    box-sizing: border-box;
     margin: 0; 
     padding: 0;
+    
+    left: 0;
+    right: 0;
 }
 
 body{
+
+    width: 100vw;
+    height: 100vh;
+
     background-color: $bg-dark-blue;
     font-family: $font-light;
+
     color: $c-blue;
 }
 
@@ -58,17 +65,26 @@ h1,h2,h3,h4{
     font-family: impasse-bold;
 }
 
+h1{
+    font-size: 2rem;
+    padding: 20px 0px;
+}
+
 p{
     font-family: impasse-light ;
+
+    padding: 10px 0;
 }
 
 input{
     background: $bg-blueLinear;
 
+    height: 100%;
+
     border: $c-blue 1px solid;
 
     padding: 10px 20px;
-    margin: 20px 10px;
+    // margin: 20px 10px;
 
     font-family: $font-light;
     color: white;
@@ -77,7 +93,7 @@ input{
 button{
     background: none;
 
-    border: none;
+    border: $c-blue 1px solid;
 
     position: relative;
 

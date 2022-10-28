@@ -8,8 +8,6 @@ import {
   collection,
   addDoc,
   getDocs,
-  getDoc,
-  doc
 } from "firebase/firestore";
 
 
@@ -30,11 +28,9 @@ export const state = () => ({
 export const mutations = {
 
   editEnigmas(state, list){
+   // console.log(list);
     state.list = list
-  },
-
-  editTitle(state, enigma){
-    state.enigma = enigma
+    // console.log(state.list);
   }
 
 }
@@ -72,29 +68,14 @@ export const actions = {
       // doc.data() is never undefined for query doc snapshots
       list.push({
         id: doc.id,
-        data: doc.data
+        user: doc.data().user,
+        title: doc.data().title
       });
 
-      console.log(doc.id, " => ", doc.data());
-
-      commit("editEnigmas", list);
+      //console.log(doc.id, " => ", doc.data());
 
     });
-  },
 
-  async getEnigma({commit},{id}){
-
-    const docRef = doc(db, "enigma", id);
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-
-      commit("editEnigmas", docSnap.data().title);
-
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-
+    commit("editEnigmas", list);
   }
 }

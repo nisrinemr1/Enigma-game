@@ -1,119 +1,343 @@
+
 <template>
-  <div class="home-page">
+  <div class="game-page">
 
     <h1>Enigma game</h1>
 
-    <p>hi {{localUser}}</p>
 
-    <div v-for="enigma in list" :key="enigma.id">
+    <div class="container">
 
-      <p>niaaaah</p>
-      <a @click="sendToUnity(enigma.id)">Enigma by {{enigma.user}} id = {{enigma.id}}</a>
+      <!-- ---------------- LEFT ---------------- -->
+      <!-- ---------------- LEFT ---------------- -->
+      <!-- ---------------- LEFT ---------------- -->
+      <div class="left">
+        <OnlineUsers />
+      </div>
+
+
+      <!-- ---------------- CENTER ---------------- -->
+      <!-- ---------------- CENTER ---------------- -->
+      <!-- ---------------- CENTER ---------------- -->
+      <div class="center">
+        <div class="first-part">
+          <h2>Enigmas</h2>
+        <div class="enigmaLinks" v-for="item in this.$store.state.enigma.list">
+          <p @click="isHidden = !isHidden">Enigma by {{item.user}}</p>
+          <div class="canva-container" v-if="!isHidden">
+
+            <Webgl/>
+
+          </div>
+        </div>
+        </div>
+        
+
+        <div class="create-enigma">
+
+          <form @submit.prevent="submit">
+
+            <div class="form-container">
+            <div class="input-new-enigma">
+
+              <input class="type-enigma" type="text" v-model="newEnigma" placeholder="Type your enigma sentence">
+
+            </div>
+
+            <div class="submit-create">
+            
+              <button> Create</button>
+
+            </div>
+
+          </div>
+
+          </form>
+
+        </div>
+
+
+
+      </div>
+
+      <!-- <Webgl/> -->
+
+
+      <!-- ---------------- RIGHT ---------------- -->
+      <!-- ---------------- RIGHT ---------------- -->
+      <!-- ---------------- RIGHT ---------------- -->
+      <div class="right">
+        <h2>Users</h2>
+
+        <div class="chat-area">
+          <h3>Test</h3>
+        </div>
+        <form class="chat-form" @submit.prevent="sendMessage">
+
+            <div class="input-msg">
+            
+              <input type="text" v-model="newMessage" placeholder="Type your message">
+
+            </div>
+
+            <button> Send </button>
+
+        </form>
+
+      </div>
 
     </div>
 
-    <form @submit.prevent="submit">
 
-      <input type="text" v-model="newEnigma" placeholder="Type your enigma sentence">
-
-      <button> Send </button>
-
-    </form>
-
-
-    <canvas/>
 
   </div>
 </template>
 
 
+
 <script>
+  import OnlineUsers from '~/component/onlineUsers.vue';
+  import Webgl from '~/component/webgl.vue';
+
   export default {
     name: "game",
     data() {
       return {
         localUser: "",
         newEnigma: "",
-        list : [
-            {
-              id: "w6DEQBUo9RbtfH2o1kmH",
-              user: "Pikachu",
-              title: "Petit test des familles"
-            }
-          ],
-          title:""
+        title: "",
+        list: [],
+        isHidden: true,
+        newMessage: ""
+      };
+    },
+
+
+    watch:{
+      list(){ 
+        console.log("SanGoku")
+        console.log(this.list)
       }
     },
-
-    computed: {
-
-      // list:   function () { return this.$store.state.enigma.list },
-      // enigma: function () { 
-      //   return this.$store.state.enigma.enigma 
-      // }
-
+    
+    created(){
+      this.$store.dispatch("enigma/getAll").then(()=> {this.list = this.$store.state.enigma.list; console.log("ici");} )
+      // console.log(this.$store.state.enigma.list);
     },
-
-    // created(){
-
-    //   this.title = this.$store.state.title
-
-    // },
 
     methods: {
 
+
       submit() {
-
         // ANCHOR Const : variable jamais modifier (read only), let: variable modifiable uniquement dans la fonction, var: variable modifiable et utilisable dans plusieurs fonctions
-
         let isAscii = [...this.newEnigma].some(char => char.charCodeAt(0) > 127);
-
         //IF BOTH INPUT ARE EMPTY
         if (!this.newEnigma || isAscii) {
-
           alert("Use acii characters only ;)");
           this.newEnigma = "";
-
         } else {
-
           // SEND INPUT VALUES TO DATA
           // this.enigma.push({
           //   title: this.newEnigma,
           //   user: this.localUser
           // });
-
           //SEND TO STORE
-          this.$store.dispatch('enigma/add', {
+          this.$store.dispatch("enigma/add", {
             user: this.localUser,
             title: this.newEnigma
           });
-
           alert("Your enigma has been send");
           this.newEnigma = "";
         }
-
       },
       // TODO
-
       sendToUnity(id) {
-        this.$store.dispatch('enigma/getEnigma', {id});
+        this.$store.dispatch("enigma/getEnigma", {
+          id
+        });
         // console.log("bon normalement une fois que c'est fait le message est : " + this.enigma)
       },
-
     },
 
 
     mounted() {
-
-      if (!localStorage.getItem('storedData')) {
+      if (!localStorage.getItem("storedData")) {
         this.$router.push({
           path: "/"
         });
       } else {
-        this.localUser = localStorage.getItem('storedData');
+        this.localUser = localStorage.getItem("storedData");
       }
+    },
 
+
+    components: {
+      OnlineUsers,
+      Webgl
     }
   }
 
 </script>
+
+
+<style lang="scss">
+  .game-page {
+
+    width: 100%;
+    height: 95vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .home-enter-active, .home-leave-active { transition: opacity .5s; }
+    .home-enter, .home-leave-active { opacity: 0; }
+
+    h1 {
+      width: 90%;
+      text-align: start;
+    }
+
+    .container {
+
+      width: 90%;
+      height: 90%;
+
+
+      display: flex;
+      justify-content: center;
+
+
+
+      .left {
+
+        object-fit: contain;
+
+        border: rgb(4, 235, 235) 2px double;
+
+        background: linear-gradient(to bottom, rgba(43, 237, 230, 0.1) 0%, rgba(43, 237, 230, 0.2) 100%);
+
+
+        width: 15%;
+        height: 100%;
+        height: 100%;
+
+      }
+
+
+      .center {
+        background: linear-gradient(to bottom, rgba(43, 237, 230, 0.1) 0%, rgba(43, 237, 230, 0.2) 100%);
+        border: rgb(4, 235, 235) 2px double;
+
+        width: 65%;
+        height: 100%;
+
+        position: relative;
+
+        .first-part{
+          
+          height: 80%;
+          overflow-y: scroll;
+          position: relative;
+
+        h2 {
+          padding-top: 5px;
+          padding-left: 10px;
+          padding-bottom: 5px;
+          border-bottom: rgb(4, 235, 235) 1px solid;
+        }
+
+
+        }
+
+        
+
+        .canva-container {
+          width: 100%;
+          height: 70%;
+          overflow: hidden;
+
+        }
+
+        .create-enigma {
+
+          width: 100%;
+          height: 20%;
+
+          display: flex;
+          flex-direction: column;
+
+          position: absolute;
+
+          bottom: 0;
+
+          form{
+
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-content: flex-end;
+
+
+            .form-container{
+
+              width: 50%;
+
+              position: relative;
+
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              justify-content: center;
+
+              .input-new-enigma{
+                
+                width: 100%;
+                height: 100%;
+
+                margin-bottom: 20px;
+
+                .type-enigma{
+                  width: 93%;
+                }
+
+              }
+              
+              .submit-create{
+                width: 100%;
+                height: auto;
+                display: flex;
+                justify-content: flex-end;
+              }
+
+            }
+
+          }
+
+        }
+
+
+
+      }
+
+      .right {
+        background: linear-gradient(to bottom, rgba(43, 237, 230, 0.1) 0%, rgba(43, 237, 230, 0.2) 100%);
+        border: rgb(4, 235, 235) 2px double;
+
+        height: 100%;
+        position: relative;
+
+        h2{
+            padding-top: 5px;
+            padding-left: 10px;
+            padding-bottom: 5px;
+            border-bottom: rgb(4, 235, 235) 1px solid;
+        }
+
+        
+      }
+    }
+
+  }
+
+</style>
