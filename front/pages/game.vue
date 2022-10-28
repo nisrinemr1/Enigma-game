@@ -1,4 +1,3 @@
-
 <template>
   <div class="game-page">
 
@@ -21,35 +20,35 @@
       <div class="center">
         <div class="first-part">
           <h2>Enigmas</h2>
-        <div class="enigmaLinks" v-for="item in this.$store.state.enigma.list">
-          <p @click="isHidden = !isHidden">Enigma by {{item.user}}</p>
-          <div class="canva-container" v-if="!isHidden">
+          <div class="enigmaLinks" v-for="item in this.$store.state.enigma.list">
+            <p @click="isHidden = !isHidden">Enigma by {{item.user}}</p>
+            <div class="canva-container" v-if="!isHidden">
 
-            <Webgl/>
+              <Webgl />
 
+            </div>
           </div>
         </div>
-        </div>
-        
+
 
         <div class="create-enigma">
 
-          <form @submit.prevent="submit">
+          <form @submit.prevent="sendMessage">
 
             <div class="form-container">
-            <div class="input-new-enigma">
+              <div class="input-new-enigma">
 
-              <input class="type-enigma" type="text" v-model="newEnigma" placeholder="Type your enigma sentence">
+                <input class="type-enigma" type="text" v-model="newEnigma" placeholder="Type your enigma sentence">
+
+              </div>
+
+              <div class="submit-create">
+
+                <button> Create</button>
+
+              </div>
 
             </div>
-
-            <div class="submit-create">
-            
-              <button> Create</button>
-
-            </div>
-
-          </div>
 
           </form>
 
@@ -66,22 +65,28 @@
       <!-- ---------------- RIGHT ---------------- -->
       <!-- ---------------- RIGHT ---------------- -->
       <div class="right">
-        <h2>Users</h2>
+        <h2>Chat</h2>
 
         <div class="chat-area">
-          <h3>Test</h3>
+        <div class="test-message">
+          <div class="chat-message" v-for="message in messages" :key="message">
+            <h3>{{message.name}}</h3>
+            <p class="message-text">{{message.text}}</p>
+          </div>
         </div>
-        <form class="chat-form" @submit.prevent="sendMessage">
+          
+          <form class="chat-form" @submit.prevent="sendMessage">
 
             <div class="input-msg">
-            
-              <input type="text" v-model="newMessage" placeholder="Type your message">
+
+              <input class="its-the-end" type="text" v-model="newMessage" placeholder="Type your message">
 
             </div>
 
             <button> Send </button>
 
-        </form>
+          </form>
+        </div>
 
       </div>
 
@@ -107,20 +112,41 @@
         title: "",
         list: [],
         isHidden: true,
-        newMessage: ""
+        newMessage: "",
+        messages:[
+          {
+            name: "Babouche ⛑️",
+            text: "Coucou, ça va la compagne ?"
+          },
+          {
+            name: "Céryale Dora 🔪",
+            text: "Yo, ouai tranquillou, en vrai, chaud le premier à décrypter la blague de Callypse, ça te tente ?"
+          },
+          {
+            name: "Babouche ⛑️",
+            text: "Yes, ça va faire un trophée en plus dans mon palmarès !"
+          },
+          {
+            name: "Céryale Dora 🔪",
+            text: "T'avances pas trop vite haha !"
+          },
+        ]
       };
     },
 
 
-    watch:{
-      list(){ 
+    watch: {
+      list() {
         console.log("SanGoku")
         console.log(this.list)
       }
     },
-    
-    created(){
-      this.$store.dispatch("enigma/getAll").then(()=> {this.list = this.$store.state.enigma.list; console.log("ici");} )
+
+    created() {
+      this.$store.dispatch("enigma/getAll").then(() => {
+        this.list = this.$store.state.enigma.list;
+        console.log("ici");
+      })
       // console.log(this.$store.state.enigma.list);
     },
 
@@ -149,6 +175,17 @@
           this.newEnigma = "";
         }
       },
+
+      sendMessage(){
+
+        // SEND MESSAGE
+        this.messages.push({
+          name: this.localUser,
+          text: this.newMessage
+        });
+        
+      },
+
       // TODO
       sendToUnity(id) {
         this.$store.dispatch("enigma/getEnigma", {
@@ -189,8 +226,15 @@
     flex-direction: column;
     align-items: center;
 
-    .home-enter-active, .home-leave-active { transition: opacity .5s; }
-    .home-enter, .home-leave-active { opacity: 0; }
+    .home-enter-active,
+    .home-leave-active {
+      transition: opacity .5s;
+    }
+
+    .home-enter,
+    .home-leave-active {
+      opacity: 0;
+    }
 
     h1 {
       width: 90%;
@@ -233,23 +277,24 @@
 
         position: relative;
 
-        .first-part{
-          
+        .first-part {
+
           height: 80%;
           overflow-y: scroll;
           position: relative;
 
-        h2 {
-          padding-top: 5px;
-          padding-left: 10px;
-          padding-bottom: 5px;
-          border-bottom: rgb(4, 235, 235) 1px solid;
-        }
+
+          h2 {
+            padding-top: 5px;
+            padding-left: 10px;
+            padding-bottom: 5px;
+            border-bottom: rgb(4, 235, 235) 1px solid;
+          }
 
 
         }
 
-        
+
 
         .canva-container {
           width: 100%;
@@ -270,16 +315,16 @@
 
           bottom: 0;
 
-          form{
+          form {
 
             width: 100%;
 
             display: flex;
             flex-direction: column;
-            align-content: flex-end;
+            align-items: flex-end;
 
 
-            .form-container{
+            .form-container {
 
               width: 50%;
 
@@ -290,24 +335,28 @@
               align-items: flex-end;
               justify-content: center;
 
-              .input-new-enigma{
-                
+              .input-new-enigma {
+
                 width: 100%;
                 height: 100%;
 
                 margin-bottom: 20px;
 
-                .type-enigma{
+                .type-enigma {
                   width: 93%;
                 }
 
               }
-              
-              .submit-create{
+
+              .submit-create {
                 width: 100%;
                 height: auto;
                 display: flex;
                 justify-content: flex-end;
+                button{
+                  margin-top: 10px;
+                  margin-right: 10px;
+                }
               }
 
             }
@@ -324,17 +373,55 @@
         background: linear-gradient(to bottom, rgba(43, 237, 230, 0.1) 0%, rgba(43, 237, 230, 0.2) 100%);
         border: rgb(4, 235, 235) 2px double;
 
+        width: 15%;
+
         height: 100%;
         position: relative;
 
-        h2{
-            padding-top: 5px;
-            padding-left: 10px;
-            padding-bottom: 5px;
-            border-bottom: rgb(4, 235, 235) 1px solid;
+        h2 {
+          padding-top: 5px;
+          padding-left: 10px;
+          padding-bottom: 5px;
+          border-bottom: rgb(4, 235, 235) 1px solid;
         }
 
-        
+        .test-message{
+          overflow-y: scroll;
+          overflow-x: hidden;
+          width: 100%;
+          height: 400px;
+
+          .chat-message{
+            overflow-y: hidden;
+
+            .message-text{
+              width: 70%;
+              overflow-x: visible;
+            }
+          }
+        }
+
+        .chat-form {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          justify-content: flex-end;
+          width: 100%;
+          height: 35vh;
+
+          .its-the-end{
+            margin-bottom: 50px;
+          }
+
+          button {
+            margin-top: 50px;
+            width: 50%;
+            margin-right: 10px;
+
+          }
+
+        }
+
       }
     }
 

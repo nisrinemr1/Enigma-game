@@ -1,6 +1,6 @@
 <template> 
    <!-- <Unity  width="1000" height="600" unityLoader="http://localhost:8888/group_project/i3_hackathon/webgl/Build/Build.loader.js"></Unity>  -->
-<iframe src="http://192.168.3.47/" width="1000" height="600"></iframe>
+<iframe src="http://192.168.3.47/game-test/index.html" width="1000" height="600"></iframe>
 
 </template>
 
