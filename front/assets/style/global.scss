@@ -1,0 +1,142 @@
+// -------------------- FONT IMPORT --------------------
+// -------------------- FONT IMPORT --------------------
+// -------------------- FONT IMPORT --------------------
+@font-face {
+    font-family: "impasse-light";
+    src: url('~/assets/font/Impasse.otf');
+}
+@font-face {
+    font-family: "impasse-bold";
+    src: url('~/assets/font/ImpasseBold.otf');
+}
+
+
+// -------------------- VARIABLES --------------------
+// -------------------- VARIABLES --------------------
+// -------------------- VARIABLES --------------------
+
+
+// ---------------- FONT ----------------
+// ---------------- FONT ----------------
+$font-light: impasse-light;
+$font-bold: impasse-bold;
+
+
+// ---------------- COLORS ----------------
+// ---------------- COLORS ----------------
+
+// ------------ FONT COLOR ------------
+$c-blue : rgb(4, 235, 235);
+$c-green: rgb(4, 235, 158);
+$c-white: rgb(224, 224, 224);
+
+// ------------ BACKGROUND COLOR ------------
+$bg-dark-blue: rgb(25, 26, 35);
+$bg-blueLinear  : linear-gradient(to bottom, rgba(43,237,230,0.1) 0%, rgba(43,237,230,0.2) 100%);
+$bg-blue : rgb(4, 235, 235);
+
+
+
+
+
+
+
+
+*{
+    margin: 0; 
+    padding: 0;
+    
+    left: 0;
+    right: 0;
+}
+
+body{
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: $bg-dark-blue;
+    font-family: $font-light;
+
+    color: $c-blue;
+}
+
+h1,h2,h3,h4{
+    font-family: impasse-bold;
+}
+
+h1{
+    font-size: 2rem;
+    padding: 20px 0px;
+}
+
+p{
+    font-family: impasse-light ;
+
+    padding: 10px 0;
+}
+
+input{
+    background: $bg-blueLinear;
+
+    height: 100%;
+
+    border: $c-blue 1px solid;
+
+    padding: 10px 20px;
+    // margin: 20px 10px;
+
+    font-family: $font-light;
+    color: white;
+}
+
+button{
+    background: none;
+
+    border: $c-blue 1px solid;
+
+    position: relative;
+
+    padding: 15px 30px;
+
+    color: $c-blue;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-decoration: none;
+    font-size: 20;
+
+    overflow: hidden;
+
+    transition: 0.2s;
+
+    &:visited {
+        color: $c-blue;
+    }
+    &:hover {
+        color: #050f1a;
+
+        background-color: $bg-blue;
+
+        box-shadow: 0 0 10px $bg-blue, 0 0 40px $bg-blue, 0 0 80px $bg-blue;
+
+        transition-delay: 100ms;
+    }
+}
+
+
+
+
+
+// UNITY 
+
+body { padding: 0; margin: 0 };
+#unity-container { position: absolute };
+#unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) };
+#unity-container.unity-mobile { width: 100%; height: 100% };
+#unity-canvas { background: #231F20 };
+.unity-mobile #unity-canvas { width: 100%; height: 100% };
+#unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none };
+#unity-footer { position: relative };
+.unity-mobile #unity-footer { display: none };
+#unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px };
+#unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none };
