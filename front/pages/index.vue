@@ -19,7 +19,7 @@
       <div class="footer">
         <h2>Hackathon 2022 🤍</h2>
         <h2> Shaila-GAME, Scheherazad-GAME, Manon-GAME </h2>
-        <h2> Lelanie-ASR, Nisrine-WEB </h2>
+        <h2> Lelanie-ASR, Juliette-ASR, Nisrine-WEB </h2>
       </div>
 
     </div>

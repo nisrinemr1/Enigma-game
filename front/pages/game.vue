@@ -9,9 +9,9 @@
       <!-- ---------------- LEFT ---------------- -->
       <!-- ---------------- LEFT ---------------- -->
       <!-- ---------------- LEFT ---------------- -->
-      <div class="left">
+      <!-- <div class="left">
         <OnlineUsers />
-      </div>
+      </div> -->
 
 
       <!-- ---------------- CENTER ---------------- -->
@@ -21,7 +21,7 @@
         <div class="first-part">
           <h2>Enigmas</h2>
           <div class="enigmaLinks" v-for="item in this.$store.state.enigma.list">
-            <p @click="isHidden = !isHidden">Enigma by {{item.user}}</p>
+            <h3 @click="isHidden = !isHidden">Enigma by {{item.user}}</h3>
             <div class="canva-container" v-if="!isHidden">
 
               <Webgl />
@@ -31,7 +31,7 @@
         </div>
 
 
-        <div class="create-enigma">
+        <!-- <div class="create-enigma">
 
           <form @submit.prevent="sendMessage">
 
@@ -52,7 +52,7 @@
 
           </form>
 
-        </div>
+        </div> -->
 
 
 
@@ -64,7 +64,7 @@
       <!-- ---------------- RIGHT ---------------- -->
       <!-- ---------------- RIGHT ---------------- -->
       <!-- ---------------- RIGHT ---------------- -->
-      <div class="right">
+      <!-- <div class="right">
         <h2>Chat</h2>
 
         <div class="chat-area">
@@ -88,7 +88,7 @@
           </form>
         </div>
 
-      </div>
+      </div> -->
 
     </div>
 
@@ -149,6 +149,7 @@
       })
       // console.log(this.$store.state.enigma.list);
     },
+
 
     methods: {
 
@@ -272,16 +273,18 @@
         background: linear-gradient(to bottom, rgba(43, 237, 230, 0.1) 0%, rgba(43, 237, 230, 0.2) 100%);
         border: rgb(4, 235, 235) 2px double;
 
-        width: 65%;
+        width: 100%;
         height: 100%;
 
         position: relative;
 
+
         .first-part {
 
-          height: 80%;
+          height: 90vh;
           overflow-y: scroll;
           position: relative;
+
 
 
           h2 {
@@ -291,17 +294,29 @@
             border-bottom: rgb(4, 235, 235) 1px solid;
           }
 
+          .enigmaLinks{
 
+            width: 90vw;
+            height: 75vh; 
+            overflow: hidden;
+
+            h3{
+              padding-left: 100px;
+            }
+
+
+            .canva-container {
+              width: 100%;
+              height: 100%;
+              overflow: hidden;
+            }
+
+
+          }
+
+          
         }
 
-
-
-        .canva-container {
-          width: 100%;
-          height: 70%;
-          overflow: hidden;
-
-        }
 
         .create-enigma {
 
