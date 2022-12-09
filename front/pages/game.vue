@@ -5,22 +5,23 @@
 
 
     <div class="container">
-
       <!-- ---------------- LEFT ---------------- -->
       <!-- ---------------- LEFT ---------------- -->
       <!-- ---------------- LEFT ---------------- -->
-      <div class="left">
+      <!-- <div class="left">
         <OnlineUsers />
-      </div>
+      </div> -->
 
 
+
       <!-- ---------------- CENTER ---------------- -->
       <!-- ---------------- CENTER ---------------- -->
       <!-- ---------------- CENTER ---------------- -->
+
       <div class="center">
         <div class="first-part">
           <h2>Enigmas</h2>
-          <div class="enigmaLinks" v-for="item in this.$store.state.enigma.list">
+          <div class="enigmaLinks" v-for="item in this.$store.state.enigma.list"> 
             <p @click="isHidden = !isHidden">Enigma by {{item.user}}</p>
             <div class="canva-container" v-if="!isHidden">
 
@@ -28,10 +29,15 @@
 
             </div>
           </div>
+          <Explanation/>
         </div>
 
 
-        <div class="create-enigma">
+
+
+
+
+        <!-- <div class="create-enigma">
 
           <form @submit.prevent="sendMessage">
 
@@ -52,7 +58,7 @@
 
           </form>
 
-        </div>
+        </div> -->
 
 
 
@@ -64,7 +70,7 @@
       <!-- ---------------- RIGHT ---------------- -->
       <!-- ---------------- RIGHT ---------------- -->
       <!-- ---------------- RIGHT ---------------- -->
-      <div class="right">
+      <!-- <div class="right">
         <h2>Chat</h2>
 
         <div class="chat-area">
@@ -88,11 +94,10 @@
           </form>
         </div>
 
-      </div>
+      </div> -->
+
 
     </div>
-
-
 
   </div>
 </template>
@@ -100,7 +105,8 @@
 
 
 <script>
-  import OnlineUsers from '~/component/onlineUsers.vue';
+  import Explanation from '~/component/explanation.vue';
+import OnlineUsers from '~/component/onlineUsers.vue';
   import Webgl from '~/component/webgl.vue';
 
   export default {
@@ -208,9 +214,10 @@
 
 
     components: {
-      OnlineUsers,
-      Webgl
-    }
+    OnlineUsers,
+    Webgl,
+    Explanation
+}
   }
 
 </script>
@@ -246,6 +253,8 @@
       width: 90%;
       height: 90%;
 
+      z-index: 1;
+
 
       display: flex;
       justify-content: center;
@@ -272,15 +281,15 @@
         background: linear-gradient(to bottom, rgba(43, 237, 230, 0.1) 0%, rgba(43, 237, 230, 0.2) 100%);
         border: rgb(4, 235, 235) 2px double;
 
-        width: 65%;
+        width: 100%;
         height: 100%;
 
         position: relative;
 
         .first-part {
 
-          height: 80%;
-          overflow-y: scroll;
+          height: 100%;
+          overflow-y: none;
           position: relative;
 
 
@@ -291,15 +300,38 @@
             border-bottom: rgb(4, 235, 235) 1px solid;
           }
 
+          .enigmaLinks{
 
-        }
+            height: 100%;
 
+            p{
 
+              margin-left: 40px;
+              margin-bottom: 10px;
 
-        .canva-container {
-          width: 100%;
-          height: 70%;
-          overflow: hidden;
+              cursor: pointer;
+              width: 40%;
+
+              border-bottom: transparent 3px solid;
+
+              &:active, &:hover{
+
+                border-bottom: rgb(4, 235, 235) 3px solid;
+                transition: all .3s ease-in-out;
+              }
+            }
+
+            .canva-container {
+              overflow: hidden;
+              height: 70vh;
+
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+            }
+          }
+
 
         }
 
